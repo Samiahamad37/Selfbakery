@@ -3,252 +3,403 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zelfbaker — Artisan Breads & Pastries</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Self Bakery — Fresh Artisan Baking in Dar es Salaam</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --cream: #F9F3E8;
-      --warm-white: #FDF8F0;
-      --brown-dark: #2C1A0E;
-      --brown-mid: #6B3D22;
-      --brown-light: #B07648;
-      --amber: #D4892A;
-      --amber-light: #F2C46D;
-      --sage: #7A8C6E;
-      --sage-light: #C4D1BA;
-      --rose: #C4826A;
-      --text-main: #2C1A0E;
-      --text-mid: #6B4C35;
-      --text-light: #9C7A62;
-      --border: rgba(44,26,14,0.12);
+      --cream:      #FAF3E0;
+      --warm-white: #FEF9EE;
+      --brown-dark: #2B1600;
+      --brown-mid:  #7C3A00;
+      --brown-light:#C47A2B;
+      --amber:      #E8920A;
+      --amber-lt:   #F9C85A;
+      --green:      #2D6A4F;
+      --green-lt:   #74C69D;
+      --rust:       #C1440E;
+      --text-main:  #2B1600;
+      --text-mid:   #7C4A1E;
+      --text-light: #A87040;
+      --border:     rgba(43,22,0,0.11);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-main); overflow-x: hidden; }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text-main); overflow-x:hidden; }
+
+    /* subtle grain */
     body::before {
-      content: ''; position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 999; opacity: .5;
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:998; opacity:.4;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
     }
 
-    /* ANNOUNCEMENT */
-    .announcement { background: var(--brown-dark); color: var(--amber-light); text-align: center; padding: 10px 20px; font-size: 13px; letter-spacing: 0.06em; }
+    /* ── ANNOUNCEMENT ── */
+    .announcement {
+      background: var(--green);
+      color: var(--amber-lt);
+      text-align: center;
+      padding: 11px 20px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .announcement strong { color: #fff; }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(249,243,232,0.92); backdrop-filter: blur(14px);
+      background: rgba(250,243,224,0.93);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 70px;
+      padding: 0 52px; height: 68px;
     }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--brown-dark); text-decoration: none; }
-    .nav-logo span { font-style: italic; color: var(--amber); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.03em; transition: color .2s; }
-    .nav-links a:hover { color: var(--amber); }
-    .nav-actions { display: flex; align-items: center; gap: 20px; }
-    .nav-actions button { background: none; border: none; cursor: pointer; color: var(--text-mid); font-size: 20px; transition: color .2s; }
-    .nav-actions button:hover { color: var(--amber); }
-    .cart-btn { position: relative; }
-    .cart-badge { position: absolute; top: -6px; right: -6px; background: var(--amber); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .nav-logo {
+      font-family:'Playfair Display',serif;
+      font-size:22px; font-weight:700;
+      color:var(--brown-dark); text-decoration:none;
+      display:flex; align-items:center; gap:10px;
+    }
+    .nav-logo .logo-icon {
+      width:36px; height:36px; border-radius:8px;
+      background:var(--amber); display:flex; align-items:center; justify-content:center;
+      font-size:18px;
+    }
+    .nav-logo em { font-style:italic; color:var(--amber); }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { text-decoration:none; font-size:14px; font-weight:500; color:var(--text-mid); transition:color .2s; }
+    .nav-links a:hover { color:var(--amber); }
+    .nav-actions { display:flex; align-items:center; gap:18px; }
+    .nav-actions button { background:none; border:none; cursor:pointer; color:var(--text-mid); font-size:19px; transition:color .2s; }
+    .nav-actions button:hover { color:var(--amber); }
+    .cart-btn { position:relative; }
+    .cart-badge {
+      position:absolute; top:-5px; right:-6px;
+      background:var(--rust); color:#fff; border-radius:50%;
+      width:17px; height:17px; font-size:10px; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .mpesa-badge {
+      background:var(--green); color:#fff;
+      font-size:11px; font-weight:600; padding:4px 10px;
+      border-radius:100px; display:flex; align-items:center; gap:5px;
+    }
 
-    /* HERO */
-    .hero { min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 60px 48px; gap: 60px; position: relative; overflow: hidden; }
-    .hero::after { content: ''; position: absolute; bottom: -120px; right: -120px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(212,137,42,0.15), transparent 70%); pointer-events: none; }
-    .hero-text { position: relative; z-index: 1; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,137,42,0.1); border: 1px solid rgba(212,137,42,0.3); border-radius: 100px; padding: 6px 16px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-bottom: 28px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px, 5vw, 72px); font-weight: 700; line-height: 1.08; color: var(--brown-dark); margin-bottom: 24px; }
-    .hero h1 em { font-style: italic; color: var(--brown-light); }
-    .hero-desc { font-size: 16px; line-height: 1.7; color: var(--text-mid); max-width: 440px; margin-bottom: 40px; }
-    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--brown-dark); color: var(--cream); border: 2px solid var(--brown-dark); padding: 14px 28px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .25s; letter-spacing: 0.03em; }
-    .btn-primary:hover { background: var(--brown-mid); border-color: var(--brown-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(44,26,14,0.2); }
-    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--brown-dark); border: 2px solid var(--border); padding: 14px 28px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .25s; }
-    .btn-secondary:hover { border-color: var(--brown-light); color: var(--brown-mid); }
-    .hero-stats { display: flex; gap: 36px; margin-top: 52px; padding-top: 36px; border-top: 1px solid var(--border); }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--brown-dark); }
-    .stat-label { font-size: 13px; color: var(--text-light); margin-top: 2px; }
-    .hero-visual { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
-    .hero-img { border-radius: 16px; overflow: hidden; background: var(--warm-white); box-shadow: 0 12px 40px rgba(44,26,14,0.12); transition: transform .4s; }
-    .hero-img:hover { transform: scale(1.02); }
-    .hero-img.large { grid-row: span 2; min-height: 460px; }
-    .hero-img.small { min-height: 218px; }
-    .hero-img-inner { width: 100%; height: 100%; min-height: inherit; display: flex; align-items: center; justify-content: center; flex-direction: column; font-size: 72px; }
-    .img-bg-1 { background: linear-gradient(145deg, #F5E6C8, #E8D0A0); }
-    .img-bg-2 { background: linear-gradient(145deg, #E8D5C0, #D4B896); }
-    .img-bg-3 { background: linear-gradient(145deg, #F0E8D0, #E0D0B0); }
-    .img-label { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--brown-mid); margin-top: 8px; font-style: italic; }
-    .float-badge { position: absolute; bottom: 20px; left: -20px; background: white; border-radius: 12px; padding: 12px 18px; box-shadow: 0 8px 30px rgba(44,26,14,0.15); display: flex; align-items: center; gap: 12px; animation: float 3s ease-in-out infinite; z-index: 10; }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    .float-badge-icon { font-size: 28px; }
-    .float-badge-text { font-size: 12px; color: var(--text-mid); }
-    .float-badge-text strong { display: block; font-size: 14px; color: var(--brown-dark); }
+    /* ── HERO ── */
+    .hero {
+      min-height: 90vh;
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      align-items: center; padding: 70px 52px 60px;
+      gap: 56px; position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content:''; position:absolute; bottom:-140px; right:-100px;
+      width:520px; height:520px; border-radius:50%;
+      background:radial-gradient(circle, rgba(232,146,10,.13), transparent 68%);
+      pointer-events:none;
+    }
+    /* TZ-flag inspired top accent */
+    .hero::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg, var(--green) 33%, #FFD700 33% 66%, var(--rust) 66%);
+    }
+    .hero-text { position:relative; z-index:1; }
+    .hero-tag {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(232,146,10,.1); border:1px solid rgba(232,146,10,.3);
+      border-radius:100px; padding:6px 16px;
+      font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--amber); font-weight:600; margin-bottom:26px;
+    }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(42px,4.8vw,68px); font-weight:700;
+      line-height:1.08; color:var(--brown-dark); margin-bottom:22px;
+    }
+    .hero h1 em { font-style:italic; color:var(--amber); }
+    .hero-desc { font-size:16px; line-height:1.75; color:var(--text-mid); max-width:420px; margin-bottom:36px; }
+    .hero-ctas { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--brown-dark); color:var(--cream);
+      border:2px solid var(--brown-dark); padding:13px 26px;
+      border-radius:7px; font-size:14px; font-weight:600;
+      cursor:pointer; text-decoration:none; transition:all .25s;
+    }
+    .btn-primary:hover { background:var(--brown-mid); border-color:var(--brown-mid); transform:translateY(-2px); box-shadow:0 8px 24px rgba(43,22,0,.2); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--brown-dark);
+      border:2px solid var(--border); padding:13px 26px;
+      border-radius:7px; font-size:14px; font-weight:500;
+      cursor:pointer; text-decoration:none; transition:all .25s;
+    }
+    .btn-secondary:hover { border-color:var(--amber); color:var(--amber); }
+    .hero-stats {
+      display:flex; gap:32px; margin-top:48px;
+      padding-top:32px; border-top:1px solid var(--border);
+    }
+    .stat-num { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--brown-dark); }
+    .stat-label { font-size:12px; color:var(--text-light); margin-top:2px; }
 
-    /* SECTIONS */
-    section { padding: 90px 48px; }
-    .section-header { text-align: center; margin-bottom: 56px; }
-    .section-tag { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); font-weight: 600; margin-bottom: 12px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 700; color: var(--brown-dark); margin-bottom: 16px; }
-    .section-sub { font-size: 16px; color: var(--text-mid); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    /* hero visual grid */
+    .hero-visual {
+      position:relative;
+      display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:14px;
+    }
+    .hero-img {
+      border-radius:18px; overflow:hidden;
+      box-shadow:0 14px 44px rgba(43,22,0,.13); transition:transform .4s;
+    }
+    .hero-img:hover { transform:scale(1.02); }
+    .hero-img.large { grid-row:span 2; min-height:440px; }
+    .hero-img.small { min-height:208px; }
+    .hero-img-inner {
+      width:100%; height:100%; min-height:inherit;
+      display:flex; align-items:center; justify-content:center; flex-direction:column;
+    }
+    .img-bg-1 { background:linear-gradient(145deg,#F5E3B5,#E8CB80); }
+    .img-bg-2 { background:linear-gradient(145deg,#EDD4A8,#D9B878); }
+    .img-bg-3 { background:linear-gradient(145deg,#EFE0C5,#D8C09A); }
+    .img-emoji { font-size:72px; }
+    .img-label { font-family:'Playfair Display',serif; font-size:13px; color:var(--brown-mid); margin-top:6px; font-style:italic; }
 
-    /* CATEGORIES */
-    .categories { background: var(--warm-white); }
-    .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .cat-card { background: var(--cream); border-radius: 16px; padding: 32px 24px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: all .3s; position: relative; overflow: hidden; }
-    .cat-card:hover { border-color: var(--amber); transform: translateY(-4px); box-shadow: 0 12px 36px rgba(44,26,14,0.1); }
-    .cat-icon { font-size: 52px; margin-bottom: 16px; }
-    .cat-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--brown-dark); margin-bottom: 6px; }
-    .cat-count { font-size: 13px; color: var(--text-light); }
+    .float-badge {
+      position:absolute; bottom:18px; left:-22px;
+      background:#fff; border-radius:14px; padding:12px 16px;
+      box-shadow:0 8px 32px rgba(43,22,0,.16);
+      display:flex; align-items:center; gap:12px;
+      animation:floatUp 3.2s ease-in-out infinite; z-index:10;
+    }
+    @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .float-badge-icon { font-size:26px; }
+    .float-badge-text { font-size:11px; color:var(--text-mid); }
+    .float-badge-text strong { display:block; font-size:13px; color:var(--brown-dark); }
 
-    /* PRODUCTS */
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .product-card { background: var(--warm-white); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: all .3s; cursor: pointer; }
-    .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(44,26,14,0.12); }
-    .product-img { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 80px; position: relative; overflow: hidden; }
-    .product-badge { position: absolute; top: 16px; left: 16px; background: var(--amber); color: white; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
-    .product-badge.new { background: var(--sage); }
-    .product-badge.sale { background: var(--rose); }
-    .product-body { padding: 20px 22px 24px; }
-    .product-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--brown-dark); margin-bottom: 6px; }
-    .product-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
-    .product-footer { display: flex; align-items: center; justify-content: space-between; }
-    .product-price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--brown-dark); }
-    .price-old { font-size: 14px; color: var(--text-light); text-decoration: line-through; margin-left: 6px; font-family: 'DM Sans', sans-serif; font-weight: 400; }
-    .add-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--brown-dark); color: white; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .25s; flex-shrink: 0; }
-    .add-btn:hover { background: var(--amber); transform: scale(1.1); }
-    .product-rating { display: flex; align-items: center; gap: 4px; margin-bottom: 14px; }
-    .stars { color: var(--amber-light); font-size: 14px; }
-    .rating-count { font-size: 12px; color: var(--text-light); }
+    /* ── FEATURE STRIP ── */
+    .features {
+      background:var(--brown-dark); padding:44px 52px;
+      display:grid; grid-template-columns:repeat(4,1fr); gap:16px;
+    }
+    .feat-item { text-align:center; color:var(--cream); }
+    .feat-icon { font-size:34px; margin-bottom:10px; }
+    .feat-title { font-family:'Playfair Display',serif; font-size:15px; margin-bottom:5px; }
+    .feat-desc { font-size:12px; color:var(--amber-lt); opacity:.82; }
 
-    /* FEATURES */
-    .features { background: var(--brown-dark); padding: 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-    .feature-item { text-align: center; color: var(--cream); }
-    .feature-icon { font-size: 36px; margin-bottom: 12px; }
-    .feature-title { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 6px; }
-    .feature-desc { font-size: 13px; color: var(--amber-light); opacity: 0.85; }
+    /* ── SECTIONS ── */
+    section { padding:86px 52px; }
+    .section-header { text-align:center; margin-bottom:52px; }
+    .section-tag { font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--amber); font-weight:700; margin-bottom:10px; }
+    .section-title { font-family:'Playfair Display',serif; font-size:clamp(30px,3.5vw,46px); font-weight:700; color:var(--brown-dark); margin-bottom:14px; line-height:1.15; }
+    .section-sub { font-size:15px; color:var(--text-mid); max-width:500px; margin:0 auto; line-height:1.72; }
 
-    /* STORY */
-    .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 100px 48px; }
-    .story-main-img { width: 100%; height: 480px; background: linear-gradient(145deg, #E8D5C0, #D4B896); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 120px; box-shadow: 0 20px 60px rgba(44,26,14,0.15); }
-    .story-visual { position: relative; }
-    .story-accent { position: absolute; bottom: -24px; right: -24px; width: 160px; height: 160px; background: var(--amber); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; color: white; text-align: center; padding: 20px; }
-    .story-accent-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; line-height: 1; }
-    .story-accent-label { font-size: 12px; opacity: 0.85; }
-    .story-content .section-tag { text-align: left; }
-    .story-content .section-title { text-align: left; margin-bottom: 20px; }
-    .story-text { font-size: 15px; line-height: 1.8; color: var(--text-mid); margin-bottom: 16px; }
-    .story-checks { display: flex; flex-direction: column; gap: 12px; margin: 28px 0 36px; }
-    .check-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-main); }
-    .check-icon { width: 24px; height: 24px; background: rgba(212,137,42,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--amber); font-size: 13px; flex-shrink: 0; }
+    /* ── CATEGORIES ── */
+    .categories { background:var(--warm-white); }
+    .cat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+    .cat-card {
+      background:var(--cream); border-radius:18px; padding:30px 20px;
+      text-align:center; cursor:pointer; border:2px solid transparent;
+      transition:all .3s;
+    }
+    .cat-card:hover { border-color:var(--amber); transform:translateY(-4px); box-shadow:0 12px 36px rgba(43,22,0,.1); }
+    .cat-icon { font-size:50px; margin-bottom:14px; }
+    .cat-name { font-family:'Playfair Display',serif; font-size:17px; font-weight:600; color:var(--brown-dark); margin-bottom:5px; }
+    .cat-count { font-size:12px; color:var(--text-light); }
 
-    /* TESTIMONIALS */
-    .testimonials { background: var(--warm-white); }
-    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .testi-card { background: var(--cream); border-radius: 16px; padding: 28px; border: 1px solid var(--border); }
-    .testi-quote { font-family: 'Playfair Display', serif; font-size: 48px; color: var(--amber-light); line-height: 1; margin-bottom: 8px; }
-    .testi-text { font-size: 14px; line-height: 1.75; color: var(--text-mid); margin-bottom: 20px; }
-    .testi-author { display: flex; align-items: center; gap: 12px; }
-    .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--amber-light), var(--brown-light)); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-    .testi-name { font-weight: 600; font-size: 14px; color: var(--brown-dark); }
-    .testi-loc { font-size: 12px; color: var(--text-light); }
+    /* ── PRODUCTS ── */
+    .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+    .product-card {
+      background:var(--warm-white); border-radius:20px; overflow:hidden;
+      border:1px solid var(--border); transition:all .3s; cursor:pointer;
+    }
+    .product-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(43,22,0,.12); }
+    .product-img { height:210px; display:flex; align-items:center; justify-content:center; font-size:78px; position:relative; overflow:hidden; }
+    .product-badge { position:absolute; top:14px; left:14px; color:#fff; font-size:10.5px; font-weight:700; letter-spacing:.06em; padding:4px 10px; border-radius:4px; text-transform:uppercase; }
+    .badge-best { background:var(--amber); }
+    .badge-new  { background:var(--green); }
+    .badge-sale { background:var(--rust); }
+    .product-body { padding:18px 20px 22px; }
+    .product-rating { display:flex; align-items:center; gap:4px; margin-bottom:12px; }
+    .stars { color:var(--amber-lt); font-size:13px; }
+    .rating-count { font-size:11px; color:var(--text-light); }
+    .product-name { font-family:'Playfair Display',serif; font-size:17px; font-weight:600; color:var(--brown-dark); margin-bottom:5px; }
+    .product-desc { font-size:12.5px; color:var(--text-light); line-height:1.6; margin-bottom:14px; }
+    .product-footer { display:flex; align-items:center; justify-content:space-between; }
+    .product-price { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--brown-dark); }
+    .price-old { font-size:13px; color:var(--text-light); text-decoration:line-through; margin-left:5px; font-family:'DM Sans',sans-serif; }
+    .add-btn {
+      width:38px; height:38px; border-radius:50%;
+      background:var(--brown-dark); color:#fff; border:none;
+      font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all .25s; flex-shrink:0;
+    }
+    .add-btn:hover { background:var(--amber); transform:scale(1.1); }
 
-    /* NEWSLETTER */
-    .newsletter { background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-mid) 100%); text-align: center; padding: 80px 48px; position: relative; overflow: hidden; }
-    .newsletter::before { content: '🥐'; position: absolute; font-size: 200px; opacity: 0.05; left: -60px; bottom: -60px; }
-    .newsletter::after { content: '🍞'; position: absolute; font-size: 200px; opacity: 0.05; right: -60px; top: -60px; }
-    .newsletter h2 { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--cream); margin-bottom: 12px; }
-    .newsletter p { color: var(--amber-light); margin-bottom: 32px; opacity: 0.85; font-size: 15px; }
-    .nl-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; }
-    .nl-input { flex: 1; padding: 14px 20px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.1); color: white; font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .2s; }
-    .nl-input::placeholder { color: rgba(255,255,255,0.45); }
-    .nl-input:focus { border-color: var(--amber-light); }
-    .nl-btn { padding: 14px 24px; background: var(--amber); color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .25s; white-space: nowrap; }
-    .nl-btn:hover { background: var(--amber-light); color: var(--brown-dark); }
+    /* filter bar */
+    .filter-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+    .filter-btn {
+      padding:7px 18px; border-radius:100px;
+      border:1.5px solid var(--border); background:none;
+      font-size:13px; font-family:'DM Sans',sans-serif;
+      color:var(--text-mid); cursor:pointer; transition:all .2s;
+    }
+    .filter-btn:hover,.filter-btn.active { background:var(--brown-dark); color:var(--cream); border-color:var(--brown-dark); }
 
-    /* FOOTER */
-    footer { background: var(--brown-dark); color: var(--cream); padding: 64px 48px 32px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 12px; }
-    .footer-brand-name span { color: var(--amber); font-style: italic; }
-    .footer-brand-desc { font-size: 14px; color: rgba(249,243,232,0.55); line-height: 1.7; margin-bottom: 24px; }
-    .social-links { display: flex; gap: 12px; }
-    .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; transition: background .2s; text-decoration: none; }
-    .social-link:hover { background: var(--amber); }
-    .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 20px; color: var(--cream); }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { text-decoration: none; font-size: 14px; color: rgba(249,243,232,0.55); transition: color .2s; }
-    .footer-links a:hover { color: var(--amber); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: rgba(249,243,232,0.35); }
+    /* ── STORY ── */
+    .story {
+      display:grid; grid-template-columns:1fr 1fr; gap:72px;
+      align-items:center; padding:96px 52px;
+    }
+    .story-visual { position:relative; }
+    .story-main-img {
+      width:100%; height:460px;
+      background:linear-gradient(145deg,#EDD4A8,#CCA058);
+      border-radius:24px; display:flex; align-items:center; justify-content:center;
+      font-size:110px; box-shadow:0 20px 60px rgba(43,22,0,.15);
+    }
+    .story-accent {
+      position:absolute; bottom:-22px; right:-22px;
+      width:150px; height:150px; background:var(--green);
+      border-radius:18px; display:flex; align-items:center; justify-content:center;
+      flex-direction:column; color:#fff; text-align:center; padding:18px;
+    }
+    .story-accent-num { font-family:'Playfair Display',serif; font-size:38px; font-weight:700; line-height:1; }
+    .story-accent-label { font-size:11px; opacity:.85; margin-top:4px; }
+    .story-content .section-tag { text-align:left; }
+    .story-content .section-title { text-align:left; margin-bottom:18px; }
+    .story-text { font-size:14.5px; line-height:1.82; color:var(--text-mid); margin-bottom:14px; }
+    .story-checks { display:flex; flex-direction:column; gap:10px; margin:24px 0 32px; }
+    .check-item { display:flex; align-items:center; gap:12px; font-size:14px; color:var(--text-main); }
+    .check-icon { width:22px; height:22px; background:rgba(45,106,79,.15); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--green); font-size:12px; flex-shrink:0; }
 
-    /* CART */
-    .cart-overlay { position: fixed; inset: 0; background: rgba(44,26,14,0.5); backdrop-filter: blur(4px); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s; }
-    .cart-overlay.open { opacity: 1; pointer-events: all; }
-    .cart-sidebar { position: fixed; top: 0; right: -420px; width: 420px; height: 100%; background: var(--cream); z-index: 201; transition: right .35s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; padding: 32px 28px; box-shadow: -20px 0 60px rgba(44,26,14,0.2); }
-    .cart-sidebar.open { right: 0; }
-    .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
-    .cart-title { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--brown-dark); }
-    .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-mid); }
-    .cart-items { flex: 1; overflow-y: auto; }
-    .cart-item { display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .cart-item-img { width: 64px; height: 64px; border-radius: 12px; background: var(--warm-white); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
-    .cart-item-info { flex: 1; }
-    .cart-item-name { font-family: 'Playfair Display', serif; font-size: 15px; margin-bottom: 4px; }
-    .cart-item-price { font-size: 14px; color: var(--amber); font-weight: 600; }
-    .cart-item-qty { display: flex; align-items: center; gap: 8px; }
-    .qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all .2s; }
-    .qty-btn:hover { background: var(--amber); color: white; border-color: var(--amber); }
-    .qty-num { font-size: 14px; font-weight: 600; min-width: 20px; text-align: center; }
-    .cart-footer { padding-top: 24px; border-top: 2px solid var(--border); margin-top: 8px; }
-    .cart-total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--text-mid); }
-    .cart-grand { display: flex; justify-content: space-between; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--brown-dark); margin: 12px 0 20px; }
-    .checkout-btn { width: 100%; padding: 16px; background: var(--brown-dark); color: var(--cream); border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .checkout-btn:hover { background: var(--amber); }
+    /* ── PAYMENT SECTION ── */
+    .payment-section { background:var(--warm-white); }
+    .pay-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .pay-card {
+      background:#fff; border-radius:16px; padding:28px 24px;
+      border:1px solid var(--border); text-align:center;
+      box-shadow:0 4px 20px rgba(43,22,0,.05); transition:all .3s;
+    }
+    .pay-card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(43,22,0,.1); }
+    .pay-icon { font-size:44px; margin-bottom:14px; }
+    .pay-name { font-family:'Playfair Display',serif; font-size:18px; font-weight:600; color:var(--brown-dark); margin-bottom:6px; }
+    .pay-desc { font-size:13px; color:var(--text-mid); line-height:1.6; }
+    .pay-tag { display:inline-block; margin-top:10px; padding:3px 10px; border-radius:100px; font-size:11px; font-weight:600; }
+    .pay-tag.popular { background:rgba(45,106,79,.12); color:var(--green); }
+    .pay-tag.fast { background:rgba(232,146,10,.12); color:var(--amber); }
 
-    /* FILTER */
-    .filter-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
-    .filter-btn { padding: 8px 20px; border-radius: 100px; border: 1.5px solid var(--border); background: none; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-mid); cursor: pointer; transition: all .2s; }
-    .filter-btn:hover, .filter-btn.active { background: var(--brown-dark); color: var(--cream); border-color: var(--brown-dark); }
+    /* ── TESTIMONIALS ── */
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .testi-card { background:var(--warm-white); border-radius:16px; padding:26px; border:1px solid var(--border); }
+    .testi-quote { font-family:'Playfair Display',serif; font-size:44px; color:var(--amber-lt); line-height:1; margin-bottom:6px; }
+    .testi-text { font-size:13.5px; line-height:1.75; color:var(--text-mid); margin-bottom:18px; }
+    .testi-author { display:flex; align-items:center; gap:10px; }
+    .testi-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--amber-lt),var(--brown-light)); display:flex; align-items:center; justify-content:center; font-size:18px; }
+    .testi-name { font-weight:600; font-size:13.5px; color:var(--brown-dark); }
+    .testi-loc { font-size:11.5px; color:var(--text-light); }
 
-    /* ANIMATIONS */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));
+      text-align:center; padding:76px 52px; position:relative; overflow:hidden;
+    }
+    .newsletter::before { content:'🍰'; position:absolute; font-size:200px; opacity:.05; left:-50px; bottom:-50px; }
+    .newsletter::after  { content:'🍞'; position:absolute; font-size:200px; opacity:.05; right:-50px; top:-50px; }
+    .newsletter h2 { font-family:'Playfair Display',serif; font-size:38px; color:var(--cream); margin-bottom:10px; }
+    .newsletter p { color:var(--amber-lt); margin-bottom:30px; opacity:.85; font-size:15px; }
+    .nl-form { display:flex; gap:10px; max-width:460px; margin:0 auto; }
+    .nl-input { flex:1; padding:13px 18px; border-radius:7px; border:2px solid rgba(255,255,255,.15); background:rgba(255,255,255,.1); color:#fff; font-size:14px; font-family:'DM Sans',sans-serif; outline:none; transition:border-color .2s; }
+    .nl-input::placeholder { color:rgba(255,255,255,.42); }
+    .nl-input:focus { border-color:var(--amber-lt); }
+    .nl-btn { padding:13px 22px; background:var(--amber); color:#fff; border:none; border-radius:7px; font-size:14px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .25s; white-space:nowrap; }
+    .nl-btn:hover { background:var(--amber-lt); color:var(--brown-dark); }
 
-    /* TOAST */
-    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--brown-dark); color: var(--cream); padding: 14px 24px; border-radius: 8px; font-size: 14px; z-index: 300; transition: transform .35s cubic-bezier(.4,0,.2,1); display: flex; align-items: center; gap: 10px; box-shadow: 0 8px 30px rgba(44,26,14,0.25); }
-    .toast.show { transform: translateX(-50%) translateY(0); }
+    /* ── FOOTER ── */
+    footer { background:var(--brown-dark); color:var(--cream); padding:60px 52px 28px; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:44px; margin-bottom:44px; }
+    .footer-brand-name { font-family:'Playfair Display',serif; font-size:24px; margin-bottom:10px; }
+    .footer-brand-name em { color:var(--amber); font-style:italic; }
+    .footer-brand-desc { font-size:13.5px; color:rgba(250,243,224,.5); line-height:1.72; margin-bottom:22px; }
+    .social-links { display:flex; gap:10px; }
+    .social-link { width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer; transition:background .2s; text-decoration:none; }
+    .social-link:hover { background:var(--amber); }
+    .footer-col h4 { font-family:'Playfair Display',serif; font-size:15px; margin-bottom:18px; color:var(--cream); }
+    .footer-links { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .footer-links a { text-decoration:none; font-size:13.5px; color:rgba(250,243,224,.52); transition:color .2s; }
+    .footer-links a:hover { color:var(--amber); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:26px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:rgba(250,243,224,.32); flex-wrap:wrap; gap:8px; }
 
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 40px 24px; }
-      .hero-visual { display: none; }
-      section { padding: 60px 24px; }
-      .cat-grid { grid-template-columns: repeat(2,1fr); }
-      .products-grid { grid-template-columns: repeat(2,1fr); }
-      .features { grid-template-columns: repeat(2,1fr); padding: 40px 24px; }
-      .story { grid-template-columns: 1fr; padding: 60px 24px; }
-      .testi-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .cart-sidebar { width: 100%; right: -100%; }
+    /* ── CART SIDEBAR ── */
+    .cart-overlay { position:fixed; inset:0; background:rgba(43,22,0,.5); backdrop-filter:blur(4px); z-index:200; opacity:0; pointer-events:none; transition:opacity .3s; }
+    .cart-overlay.open { opacity:1; pointer-events:all; }
+    .cart-sidebar { position:fixed; top:0; right:-440px; width:440px; height:100%; background:var(--cream); z-index:201; transition:right .35s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; padding:30px 26px; box-shadow:-20px 0 60px rgba(43,22,0,.2); }
+    .cart-sidebar.open { right:0; }
+    .cart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+    .cart-title { font-family:'Playfair Display',serif; font-size:22px; color:var(--brown-dark); }
+    .close-btn { background:none; border:none; font-size:22px; cursor:pointer; color:var(--text-mid); }
+    .cart-items { flex:1; overflow-y:auto; }
+    .cart-item { display:flex; gap:14px; align-items:center; padding:14px 0; border-bottom:1px solid var(--border); }
+    .cart-item-img { width:60px; height:60px; border-radius:10px; background:var(--warm-white); display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0; }
+    .cart-item-info { flex:1; }
+    .cart-item-name { font-family:'Playfair Display',serif; font-size:14px; margin-bottom:3px; }
+    .cart-item-price { font-size:13px; color:var(--amber); font-weight:600; }
+    .cart-item-qty { display:flex; align-items:center; gap:7px; }
+    .qty-btn { width:26px; height:26px; border-radius:50%; border:1px solid var(--border); background:none; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+    .qty-btn:hover { background:var(--amber); color:#fff; border-color:var(--amber); }
+    .qty-num { font-size:13px; font-weight:600; min-width:18px; text-align:center; }
+    .cart-footer { padding-top:20px; border-top:2px solid var(--border); margin-top:6px; }
+    .cart-total-row { display:flex; justify-content:space-between; margin-bottom:7px; font-size:13.5px; color:var(--text-mid); }
+    .cart-grand { display:flex; justify-content:space-between; font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--brown-dark); margin:10px 0 8px; }
+    .mpesa-note { background:rgba(45,106,79,.1); border:1px solid rgba(45,106,79,.2); border-radius:8px; padding:10px 14px; font-size:12px; color:var(--green); margin-bottom:14px; display:flex; gap:8px; align-items:center; }
+    .checkout-btn { width:100%; padding:15px; background:var(--brown-dark); color:var(--cream); border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; transition:all .25s; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .checkout-btn:hover { background:var(--green); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity:0; transform:translateY(22px); transition:opacity .6s ease,transform .6s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* ── TOAST ── */
+    .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--brown-dark); color:var(--cream); padding:13px 22px; border-radius:8px; font-size:13.5px; z-index:300; transition:transform .35s cubic-bezier(.4,0,.2,1); display:flex; align-items:center; gap:9px; box-shadow:0 8px 30px rgba(43,22,0,.25); white-space:nowrap; }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:920px){
+      nav { padding:0 22px; }
+      .nav-links,.mpesa-badge { display:none; }
+      .hero { grid-template-columns:1fr; padding:48px 22px 40px; min-height:auto; }
+      .hero-visual { display:none; }
+      section { padding:60px 22px; }
+      .cat-grid { grid-template-columns:repeat(2,1fr); }
+      .products-grid { grid-template-columns:repeat(2,1fr); }
+      .features { grid-template-columns:repeat(2,1fr); padding:36px 22px; }
+      .story { grid-template-columns:1fr; padding:60px 22px; }
+      .testi-grid,.pay-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .cart-sidebar { width:100%; right:-100%; }
     }
   </style>
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BAR -->
 <div class="announcement">
-  🎉 Free delivery on orders over £45 · Baked fresh daily · Order by noon for next-day delivery
+  🇹🇿 <strong>Free delivery in Dar es Salaam</strong> on orders over TSh 25,000 · Pay with M-Pesa · Baked fresh every morning
 </div>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Zelf<span>baker</span></a>
+  <a href="#" class="nav-logo">
+    <span class="logo-icon">🍞</span>
+    Self <em>Bakery</em>
+  </a>
   <ul class="nav-links">
     <li><a href="#shop">Shop</a></li>
-    <li><a href="#about">Our Story</a></li>
     <li><a href="#categories">Categories</a></li>
+    <li><a href="#about">Our Story</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-actions">
+    <span class="mpesa-badge">📱 M-Pesa Accepted</span>
     <button title="Search">🔍</button>
     <button title="Wishlist">♡</button>
     <button class="cart-btn" id="cartToggle" title="Cart">
@@ -258,215 +409,394 @@
   </div>
 </nav>
 
-<section class="hero" style="padding-top:80px">
+<!-- HERO -->
+<section class="hero">
   <div class="hero-text">
-    <div class="hero-tag">✨ Artisan Baking</div>
-    <h1>Freshly Baked<br>with <em>Love</em> &<br>Craftsmanship</h1>
-    <p class="hero-desc">Discover our selection of artisan breads, croissants and pastries — baked fresh every day with only the finest ingredients.</p>
+    <div class="hero-tag">🌟 Dar es Salaam's Artisan Bakery</div>
+    <h1>Baked Fresh<br>with <em>Heart</em> &<br>Tradition</h1>
+    <p class="hero-desc">
+      Discover handcrafted breads, mandazi, cakes and pastries — baked every morning with the finest local ingredients and delivered across Dar es Salaam.
+    </p>
     <div class="hero-ctas">
-      <a href="#shop" class="btn-primary">Shop Now →</a>
+      <a href="#shop" class="btn-primary">Order Now →</a>
       <a href="#about" class="btn-secondary">Our Story</a>
     </div>
     <div class="hero-stats">
-      <div><div class="stat-num">200+</div><div class="stat-label">Products</div></div>
+      <div><div class="stat-num">150+</div><div class="stat-label">Products</div></div>
       <div><div class="stat-num">4.9★</div><div class="stat-label">Customer Rating</div></div>
-      <div><div class="stat-num">5 yrs</div><div class="stat-label">Experience</div></div>
+      <div><div class="stat-num">3 yrs</div><div class="stat-label">In Dar es Salaam</div></div>
     </div>
   </div>
+
   <div class="hero-visual">
-    <div class="hero-img large"><div class="hero-img-inner img-bg-1">🍞<span class="img-label">Sourdough Bread</span></div></div>
-    <div class="hero-img small"><div class="hero-img-inner img-bg-2">🥐<span class="img-label">Croissants</span></div></div>
-    <div class="hero-img small"><div class="hero-img-inner img-bg-3">🧁<span class="img-label">Cupcakes</span></div></div>
+    <div class="hero-img large">
+      <div class="hero-img-inner img-bg-1">
+        <span class="img-emoji">🍞</span>
+        <span class="img-label">Artisan Bread</span>
+      </div>
+    </div>
+    <div class="hero-img small">
+      <div class="hero-img-inner img-bg-2">
+        <span class="img-emoji">🍩</span>
+        <span class="img-label">Mandazi & Donuts</span>
+      </div>
+    </div>
+    <div class="hero-img small">
+      <div class="hero-img-inner img-bg-3">
+        <span class="img-emoji">🎂</span>
+        <span class="img-label">Celebration Cakes</span>
+      </div>
+    </div>
     <div class="float-badge">
-      <span class="float-badge-icon">🌾</span>
-      <span class="float-badge-text"><strong>100% Organic</strong>Only the finest ingredients</span>
+      <span class="float-badge-icon">🌿</span>
+      <span class="float-badge-text">
+        <strong>Locally Sourced</strong>
+        Fresh Tanzania ingredients
+      </span>
     </div>
   </div>
 </section>
 
+<!-- FEATURE STRIP -->
 <div class="features">
-  <div class="feature-item"><div class="feature-icon">🚚</div><div class="feature-title">Daily Fresh Delivery</div><div class="feature-desc">Delivered fresh every day</div></div>
-  <div class="feature-item"><div class="feature-icon">🌾</div><div class="feature-title">Organic Ingredients</div><div class="feature-desc">100% natural & local</div></div>
-  <div class="feature-item"><div class="feature-icon">👩‍🍳</div><div class="feature-title">Handcrafted</div><div class="feature-desc">Made with passion</div></div>
-  <div class="feature-item"><div class="feature-icon">♻️</div><div class="feature-title">Eco Packaging</div><div class="feature-desc">Sustainably packed</div></div>
+  <div class="feat-item">
+    <div class="feat-icon">🚚</div>
+    <div class="feat-title">DSM Delivery</div>
+    <div class="feat-desc">Dar es Salaam wide delivery</div>
+  </div>
+  <div class="feat-item">
+    <div class="feat-icon">📱</div>
+    <div class="feat-title">Pay via M-Pesa</div>
+    <div class="feat-desc">Fast & secure mobile payment</div>
+  </div>
+  <div class="feat-item">
+    <div class="feat-icon">🌿</div>
+    <div class="feat-title">Local Ingredients</div>
+    <div class="feat-desc">Sourced from Tanzanian farmers</div>
+  </div>
+  <div class="feat-item">
+    <div class="feat-icon">👨‍🍳</div>
+    <div class="feat-title">Handcrafted Daily</div>
+    <div class="feat-desc">Made fresh every morning</div>
+  </div>
 </div>
 
+<!-- CATEGORIES -->
 <section class="categories" id="categories">
   <div class="section-header fade-in">
     <div class="section-tag">Explore</div>
-    <h2 class="section-title">Our Categories</h2>
-    <p class="section-sub">From crusty breads to sweet pastries — the perfect product for every occasion</p>
+    <h2 class="section-title">What We Bake</h2>
+    <p class="section-sub">From everyday staples to special occasion cakes — we've got something for every table in Dar es Salaam</p>
   </div>
   <div class="cat-grid fade-in">
-    <div class="cat-card" onclick="filterProducts('bread')"><div class="cat-icon">🍞</div><div class="cat-name">Bread</div><div class="cat-count">12 products</div></div>
-    <div class="cat-card" onclick="filterProducts('pastry')"><div class="cat-icon">🥐</div><div class="cat-name">Pastries</div><div class="cat-count">24 products</div></div>
-    <div class="cat-card" onclick="filterProducts('cake')"><div class="cat-icon">🎂</div><div class="cat-name">Cakes</div><div class="cat-count">8 products</div></div>
-    <div class="cat-card" onclick="filterProducts('cookies')"><div class="cat-icon">🍪</div><div class="cat-name">Cookies</div><div class="cat-count">16 products</div></div>
+    <div class="cat-card" onclick="filterProducts('bread')">
+      <div class="cat-icon">🍞</div>
+      <div class="cat-name">Breads</div>
+      <div class="cat-count">14 products</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('sweets')">
+      <div class="cat-icon">🍩</div>
+      <div class="cat-name">Mandazi & Sweets</div>
+      <div class="cat-count">18 products</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('cakes')">
+      <div class="cat-icon">🎂</div>
+      <div class="cat-name">Cakes</div>
+      <div class="cat-count">10 products</div>
+    </div>
+    <div class="cat-card" onclick="filterProducts('snacks')">
+      <div class="cat-icon">🥐</div>
+      <div class="cat-name">Pastries & Snacks</div>
+      <div class="cat-count">12 products</div>
+    </div>
   </div>
 </section>
 
+<!-- PRODUCTS -->
 <section id="shop">
   <div class="section-header fade-in">
     <div class="section-tag">Bestsellers</div>
-    <h2 class="section-title">Our Most Popular Products</h2>
-    <p class="section-sub">Baked fresh daily, full of flavour and made with care</p>
+    <h2 class="section-title">Fresh from Our Oven</h2>
+    <p class="section-sub">Baked every morning — place your order by 10am for same-day delivery across Dar es Salaam</p>
   </div>
+
   <div class="filter-bar fade-in">
     <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
-    <button class="filter-btn" onclick="setFilter(this,'bread')">Bread</button>
-    <button class="filter-btn" onclick="setFilter(this,'pastry')">Pastries</button>
-    <button class="filter-btn" onclick="setFilter(this,'cake')">Cakes</button>
-    <button class="filter-btn" onclick="setFilter(this,'cookies')">Cookies</button>
+    <button class="filter-btn" onclick="setFilter(this,'bread')">Breads</button>
+    <button class="filter-btn" onclick="setFilter(this,'sweets')">Mandazi & Sweets</button>
+    <button class="filter-btn" onclick="setFilter(this,'cakes')">Cakes</button>
+    <button class="filter-btn" onclick="setFilter(this,'snacks')">Pastries</button>
   </div>
+
   <div class="products-grid" id="productsGrid"></div>
 </section>
 
+<!-- STORY -->
 <section id="about" style="padding:0">
   <div class="story">
     <div class="story-visual fade-in">
       <div class="story-main-img">👩‍🍳</div>
-      <div class="story-accent"><div class="story-accent-num">5★</div><div class="story-accent-label">Average rating</div></div>
+      <div class="story-accent">
+        <div class="story-accent-num">5★</div>
+        <div class="story-accent-label">Average rating in DSM</div>
+      </div>
     </div>
     <div class="story-content fade-in">
       <div class="section-tag">Our Story</div>
-      <h2 class="section-title" style="text-align:left">Baked with<br>Passion & Tradition</h2>
-      <p class="story-text">Zelfbaker was born from a simple love of baking bread. What started as a hobby in our home kitchen grew into a passion for artisan baking with the finest organic ingredients.</p>
-      <p class="story-text">Every product is made by hand — from our crispy sourdough to our buttery croissants — completely free from artificial additives.</p>
+      <h2 class="section-title" style="text-align:left">Born in Dar es Salaam,<br>Baked with <em>Ujuzi</em></h2>
+      <p class="story-text">
+        Self Bakery started as a small home kitchen operation in Kinondoni, driven by a love of baking and a belief that Dar es Salaam deserved truly great bread. Three years on, we bake hundreds of loaves, mandazi, and cakes every week.
+      </p>
+      <p class="story-text">
+        Every item is made by hand, using fresh local ingredients from Tanzanian suppliers — no preservatives, no shortcuts, just honest baking delivered to your door.
+      </p>
       <div class="story-checks">
-        <div class="check-item"><span class="check-icon">✓</span> 100% organic ingredients</div>
-        <div class="check-item"><span class="check-icon">✓</span> No artificial colours or preservatives</div>
-        <div class="check-item"><span class="check-icon">✓</span> Baked fresh daily in our bakery</div>
-        <div class="check-item"><span class="check-icon">✓</span> Local suppliers, short supply chain</div>
+        <div class="check-item"><span class="check-icon">✓</span> 100% fresh local ingredients</div>
+        <div class="check-item"><span class="check-icon">✓</span> No artificial additives or preservatives</div>
+        <div class="check-item"><span class="check-icon">✓</span> Baked fresh every morning from 5am</div>
+        <div class="check-item"><span class="check-icon">✓</span> Delivery across Dar es Salaam</div>
+        <div class="check-item"><span class="check-icon">✓</span> Custom orders for weddings & events</div>
       </div>
-      <a href="#shop" class="btn-primary">Explore Our Products →</a>
+      <a href="#shop" class="btn-primary">Browse Our Products →</a>
     </div>
   </div>
 </section>
 
-<section class="testimonials">
+<!-- PAYMENT METHODS -->
+<section class="payment-section">
+  <div class="section-header fade-in">
+    <div class="section-tag">Easy Payment</div>
+    <h2 class="section-title">Pay the Way You Want</h2>
+    <p class="section-sub">We make it easy to pay — choose whatever works best for you</p>
+  </div>
+  <div class="pay-grid fade-in">
+    <div class="pay-card">
+      <div class="pay-icon">📱</div>
+      <div class="pay-name">M-Pesa</div>
+      <p class="pay-desc">Pay instantly with Vodacom M-Pesa. The easiest way to pay for your order right from your phone.</p>
+      <span class="pay-tag popular">Most Popular</span>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">🏦</div>
+      <div class="pay-name">Bank Transfer</div>
+      <p class="pay-desc">CRDB or NMB bank transfer accepted. Perfect for larger orders and corporate catering.</p>
+      <span class="pay-tag fast">Secure</span>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">💵</div>
+      <div class="pay-name">Cash on Delivery</div>
+      <p class="pay-desc">Pay in Tanzanian Shillings when your order arrives at your door. Available across all Dar es Salaam zones.</p>
+      <span class="pay-tag fast">Available</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
   <div class="section-header fade-in">
     <div class="section-tag">Reviews</div>
-    <h2 class="section-title">What Our Customers Say</h2>
+    <h2 class="section-title">What Dar es Salaam Says</h2>
   </div>
   <div class="testi-grid fade-in">
     <div class="testi-card">
       <div class="testi-quote">"</div>
-      <p class="testi-text">The sourdough is absolutely fantastic. Perfectly crispy crust, wonderfully airy inside. I order this every single week!</p>
-      <div class="testi-author"><div class="testi-avatar">😊</div><div><div class="testi-name">Sophie Williams</div><div class="testi-loc">⭐⭐⭐⭐⭐ · London</div></div></div>
+      <p class="testi-text">Mkate wao ni mzuri sana! The sourdough bread is incredible — crispy outside, soft inside. I order every week now. Delivery was fast to Mikocheni!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">😊</div>
+        <div>
+          <div class="testi-name">Amina Juma</div>
+          <div class="testi-loc">⭐⭐⭐⭐⭐ · Mikocheni, DSM</div>
+        </div>
+      </div>
     </div>
     <div class="testi-card">
       <div class="testi-quote">"</div>
-      <p class="testi-text">The croissants are honestly better than anything I've had in Paris. Buttery, flaky and so fresh. Delivery was lightning fast too!</p>
-      <div class="testi-author"><div class="testi-avatar">🙂</div><div><div class="testi-name">James Harper</div><div class="testi-loc">⭐⭐⭐⭐⭐ · Manchester</div></div></div>
+      <p class="testi-text">Ordered a birthday cake for my daughter — it was absolutely beautiful and tasted amazing. Everyone at the party was asking where it came from!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🙂</div>
+        <div>
+          <div class="testi-name">Hassan Mkuya</div>
+          <div class="testi-loc">⭐⭐⭐⭐⭐ · Kariakoo, DSM</div>
+        </div>
+      </div>
     </div>
     <div class="testi-card">
       <div class="testi-quote">"</div>
-      <p class="testi-text">The birthday cake was a massive hit. Everyone was blown away by the taste AND the presentation. Absolutely worth it!</p>
-      <div class="testi-author"><div class="testi-avatar">😄</div><div><div class="testi-name">Emma Clarke</div><div class="testi-loc">⭐⭐⭐⭐⭐ · Bristol</div></div></div>
+      <p class="testi-text">The mandazi is the best in the city — light, fluffy, not too sweet. My whole family is hooked. M-Pesa payment made ordering so easy too!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">😄</div>
+        <div>
+          <div class="testi-name">Grace Mwamba</div>
+          <div class="testi-loc">⭐⭐⭐⭐⭐ · Sinza, DSM</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- NEWSLETTER -->
 <section class="newsletter">
-  <h2>Don't Miss Out!</h2>
-  <p>Sign up for our newsletter and receive 10% off your first order.</p>
+  <h2>Stay in the Loop 🍞</h2>
+  <p>Get weekly specials, new products and exclusive discounts — straight to your inbox or WhatsApp.</p>
   <div class="nl-form">
     <input class="nl-input" type="email" placeholder="your@email.com" />
     <button class="nl-btn" onclick="handleNewsletter()">Subscribe</button>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer id="contact">
   <div class="footer-grid">
     <div>
-      <div class="footer-brand-name">Zelf<span>baker</span></div>
-      <p class="footer-brand-desc">Artisan breads and pastries, baked fresh every day with the finest organic ingredients. Delivered right to your door.</p>
+      <div class="footer-brand-name">Self <em>Bakery</em></div>
+      <p class="footer-brand-desc">Artisan breads, mandazi, cakes and pastries — baked fresh every morning and delivered across Dar es Salaam with love.</p>
       <div class="social-links">
         <a class="social-link" title="Instagram">📸</a>
         <a class="social-link" title="Facebook">📘</a>
-        <a class="social-link" title="Pinterest">📌</a>
         <a class="social-link" title="WhatsApp">💬</a>
+        <a class="social-link" title="TikTok">🎵</a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Shop</h4>
       <ul class="footer-links">
-        <li><a href="#">Bread</a></li>
-        <li><a href="#">Pastries</a></li>
+        <li><a href="#">Breads</a></li>
+        <li><a href="#">Mandazi & Sweets</a></li>
         <li><a href="#">Cakes</a></li>
-        <li><a href="#">Cookies</a></li>
-        <li><a href="#">Offers</a></li>
+        <li><a href="#">Pastries</a></li>
+        <li><a href="#">Special Offers</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Info</h4>
       <ul class="footer-links">
         <li><a href="#">Our Story</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#">Custom Orders</a></li>
+        <li><a href="#">Catering</a></li>
+        <li><a href="#">Delivery Zones</a></li>
         <li><a href="#">FAQ</a></li>
-        <li><a href="#">Delivery</a></li>
-        <li><a href="#">Returns</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-links">
-        <li><a href="#">📍 12 Bakery Lane, Amsterdam</a></li>
-        <li><a href="#">📞 +31 20 123 4567</a></li>
-        <li><a href="#">✉️ hello@zelfbaker.com</a></li>
-        <li><a href="#">🕐 Mon–Sat: 7am–6pm</a></li>
+        <li><a href="#">📍 Kinondoni, Dar es Salaam</a></li>
+        <li><a href="#">📞 +255 712 345 678</a></li>
+        <li><a href="#">📱 M-Pesa: 0712 345 678</a></li>
+        <li><a href="#">✉️ hello@selfbakery.co.tz</a></li>
+        <li><a href="#">🕐 Mon–Sat: 6am–7pm</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024 Zelfbaker. All rights reserved.</span>
-    <span>Privacy Policy · Terms & Conditions · Cookies</span>
+    <span>© 2024 Self Bakery, Dar es Salaam, Tanzania. All rights reserved.</span>
+    <span>Privacy Policy · Terms · Cookies</span>
   </div>
 </footer>
 
+<!-- CART OVERLAY + SIDEBAR -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
-    <div class="cart-title">Your Cart 🛒</div>
+    <div class="cart-title">Your Order 🛒</div>
     <button class="close-btn" onclick="closeCart()">✕</button>
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer" id="cartFooter"></div>
 </div>
 
-<div class="toast" id="toast">✅ Added to cart!</div>
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Added to your order!</div>
 
 <script>
+  // ── PRODUCT DATA (TZS prices, local products) ──
   const products = [
-    { id:1, name:'Sourdough Loaf', emoji:'🍞', desc:'Classic sourdough with a crispy crust & chewy crumb', price:5.95, cat:'bread', badge:'Bestseller', bg:'linear-gradient(145deg,#F5E6C8,#E8D0A0)', rating:4.9, reviews:128 },
-    { id:2, name:'Butter Croissant', emoji:'🥐', desc:'Buttery, flaky & fresh out of the oven', price:2.50, cat:'pastry', badge:'New', badgeType:'new', bg:'linear-gradient(145deg,#F2E0B8,#E0C890)', rating:5.0, reviews:84 },
-    { id:3, name:'Chocolate Layer Cake', emoji:'🎂', desc:'Rich dark chocolate, multiple indulgent layers', price:22.50, cat:'cake', badge:'', bg:'linear-gradient(145deg,#D4C0A0,#C0A878)', rating:4.8, reviews:56 },
-    { id:4, name:'Almond Cookies', emoji:'🍪', desc:'Crispy cookies with almond marzipan filling', price:3.75, cat:'cookies', badge:'', bg:'linear-gradient(145deg,#EDD5A8,#D4B878)', rating:4.7, reviews:42 },
-    { id:5, name:'Whole Grain Spelt', emoji:'🌾', desc:'Nourishing spelt bread with a nutty flavour', price:6.50, cat:'bread', badge:'', bg:'linear-gradient(145deg,#D8C8A0,#C4AE80)', rating:4.9, reviews:67 },
-    { id:6, name:'Strawberry Tart', emoji:'🍓', desc:'Fresh fruit on a velvety pastry cream base', price:18.95, oldPrice:22.50, cat:'cake', badge:'Sale', badgeType:'sale', bg:'linear-gradient(145deg,#F0D8C0,#DCC0A0)', rating:4.8, reviews:35 },
+    {
+      id:1, name:'Sourdough Loaf', emoji:'🍞',
+      desc:'Slow-fermented sourdough with a crispy crust — baked from 5am daily',
+      price:8500, cat:'bread', badge:'Bestseller', badgeClass:'badge-best',
+      bg:'linear-gradient(145deg,#F5E3B5,#E8CB80)', rating:4.9, reviews:142
+    },
+    {
+      id:2, name:'Mandazi (6 pcs)', emoji:'🍩',
+      desc:'Light, fluffy coconut mandazi — the classic Tanzanian street snack, elevated',
+      price:4500, cat:'sweets', badge:'Local Favourite', badgeClass:'badge-new',
+      bg:'linear-gradient(145deg,#EDD4A8,#D9B878)', rating:5.0, reviews:98
+    },
+    {
+      id:3, name:'Celebration Cake', emoji:'🎂',
+      desc:'Custom-decorated for weddings, birthdays & graduations — order 2 days ahead',
+      price:65000, cat:'cakes', badge:'', badgeClass:'',
+      bg:'linear-gradient(145deg,#D8C4A0,#C0A270)', rating:4.9, reviews:67
+    },
+    {
+      id:4, name:'Coconut Macaroons', emoji:'🥥',
+      desc:'Crispy outside, chewy inside — made with fresh Tanzanian coconut',
+      price:6000, cat:'snacks', badge:'', badgeClass:'',
+      bg:'linear-gradient(145deg,#EDE0C0,#D8C898)', rating:4.7, reviews:54
+    },
+    {
+      id:5, name:'Whole Wheat Loaf', emoji:'🌾',
+      desc:'Dense, nutritious whole wheat bread — perfect for a healthy breakfast',
+      price:7000, cat:'bread', badge:'', badgeClass:'',
+      bg:'linear-gradient(145deg,#D8C8A0,#C0A870)', rating:4.8, reviews:73
+    },
+    {
+      id:6, name:'Banana Cake Slice', emoji:'🍌',
+      desc:'Moist banana cake with a hint of cinnamon — local bananas, zero waste',
+      price:3500, oldPrice:4500, cat:'cakes', badge:'Sale', badgeClass:'badge-sale',
+      bg:'linear-gradient(145deg,#F0DCA8,#DCBF78)', rating:4.8, reviews:41
+    },
+    {
+      id:7, name:'Chapati (5 pcs)', emoji:'🫓',
+      desc:'Soft, layered chapati — handmade fresh every morning, perfect with any meal',
+      price:5000, cat:'bread', badge:'Daily Fresh', badgeClass:'badge-new',
+      bg:'linear-gradient(145deg,#EDD5B0,#D9BC88)', rating:5.0, reviews:116
+    },
+    {
+      id:8, name:'Croissant', emoji:'🥐',
+      desc:'Buttery, flaky French-style croissant baked to golden perfection',
+      price:5500, cat:'snacks', badge:'New', badgeClass:'badge-new',
+      bg:'linear-gradient(145deg,#F2E0B0,#DEC888)', rating:4.8, reviews:38
+    },
+    {
+      id:9, name:'Vitumbua (8 pcs)', emoji:'🍮',
+      desc:'Traditional rice coconut pancakes — soft, lightly sweet and utterly delicious',
+      price:4000, cat:'sweets', badge:'Traditional', badgeClass:'badge-best',
+      bg:'linear-gradient(145deg,#F0D8B8,#D8BC90)', rating:4.9, reviews:89
+    },
   ];
 
   let cart = [];
 
+  // ── FORMAT TZS ──
+  function tzs(amount) {
+    return 'TSh ' + amount.toLocaleString('en-TZ');
+  }
+
+  // ── RENDER PRODUCTS ──
   function renderProducts(filter = 'all') {
     const grid = document.getElementById('productsGrid');
     const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
     grid.innerHTML = filtered.map(p => `
       <div class="product-card fade-in visible">
         <div class="product-img" style="background:${p.bg}">
-          <span style="font-size:80px">${p.emoji}</span>
-          ${p.badge ? `<span class="product-badge ${p.badgeType||''}">${p.badge}</span>` : ''}
+          <span style="font-size:78px">${p.emoji}</span>
+          ${p.badge ? `<span class="product-badge ${p.badgeClass}">${p.badge}</span>` : ''}
         </div>
         <div class="product-body">
-          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">${p.rating} (${p.reviews})</span></div>
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">${p.rating} (${p.reviews})</span>
+          </div>
           <div class="product-name">${p.name}</div>
           <div class="product-desc">${p.desc}</div>
           <div class="product-footer">
             <div>
-              <span class="product-price">£${p.price.toFixed(2)}</span>
-              ${p.oldPrice ? `<span class="price-old">£${p.oldPrice.toFixed(2)}</span>` : ''}
+              <span class="product-price">${tzs(p.price)}</span>
+              ${p.oldPrice ? `<span class="price-old">${tzs(p.oldPrice)}</span>` : ''}
             </div>
-            <button class="add-btn" onclick="addToCart(${p.id})" title="Add to cart">+</button>
+            <button class="add-btn" onclick="addToCart(${p.id})" title="Add to order">+</button>
           </div>
         </div>
       </div>`).join('');
@@ -480,9 +810,10 @@
 
   function filterProducts(cat) {
     renderProducts(cat);
-    document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+    document.getElementById('shop').scrollIntoView({ behavior:'smooth' });
   }
 
+  // ── CART ──
   function addToCart(id) {
     const p = products.find(x => x.id === id);
     const ex = cart.find(x => x.id === id);
@@ -500,36 +831,55 @@
   }
 
   function updateCartUI() {
-    document.getElementById('cartCount').textContent = cart.reduce((s,i) => s+i.qty, 0);
+    const count = cart.reduce((s,i) => s+i.qty, 0);
+    document.getElementById('cartCount').textContent = count;
     const itemsEl = document.getElementById('cartItems');
     const footerEl = document.getElementById('cartFooter');
+
     if (!cart.length) {
-      itemsEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--text-light)"><div style="font-size:48px;margin-bottom:12px">🛒</div><p>Your cart is empty</p></div>`;
+      itemsEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--text-light)">
+        <div style="font-size:48px;margin-bottom:12px">🛒</div>
+        <p>Your order is empty</p>
+        <p style="font-size:12px;margin-top:6px;opacity:.7">Add something delicious!</p>
+      </div>`;
       footerEl.innerHTML = ''; return;
     }
+
     itemsEl.innerHTML = cart.map(item => `
       <div class="cart-item">
         <div class="cart-item-img">${item.emoji}</div>
-        <div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">£${(item.price*item.qty).toFixed(2)}</div></div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">${tzs(item.price * item.qty)}</div>
+        </div>
         <div class="cart-item-qty">
           <button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
           <span class="qty-num">${item.qty}</span>
           <button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
         </div>
       </div>`).join('');
-    const sub = cart.reduce((s,i)=>s+i.price*i.qty,0);
-    const ship = sub >= 45 ? 0 : 3.95;
+
+    const sub   = cart.reduce((s,i) => s + i.price*i.qty, 0);
+    const ship  = sub >= 25000 ? 0 : 3000;
     const total = sub + ship;
+
     footerEl.innerHTML = `
-      <div class="cart-total-row"><span>Subtotal</span><span>£${sub.toFixed(2)}</span></div>
-      <div class="cart-total-row"><span>Delivery</span><span>${ship===0?'Free 🎉':'£'+ship.toFixed(2)}</span></div>
-      <div class="cart-grand"><span>Total</span><span>£${total.toFixed(2)}</span></div>
-      ${sub<45?`<p style="font-size:12px;color:var(--text-light);margin-bottom:12px">£${(45-sub).toFixed(2)} away from free delivery!</p>`:''}
-      <button class="checkout-btn">🛍️ Checkout</button>`;
+      <div class="cart-total-row"><span>Subtotal</span><span>${tzs(sub)}</span></div>
+      <div class="cart-total-row"><span>Delivery</span><span>${ship === 0 ? 'Free 🎉' : tzs(ship)}</span></div>
+      <div class="cart-grand"><span>Total</span><span>${tzs(total)}</span></div>
+      ${sub < 25000 ? `<p style="font-size:12px;color:var(--text-light);margin-bottom:10px">Add ${tzs(25000-sub)} more for free delivery!</p>` : ''}
+      <div class="mpesa-note">📱 Pay with M-Pesa · 0712 345 678 · Cash on delivery also available</div>
+      <button class="checkout-btn">🛍️ Place Order</button>`;
   }
 
-  function openCart() { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
-  function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+  function openCart()  {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+  function closeCart() {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+  }
   document.getElementById('cartToggle').addEventListener('click', openCart);
 
   function showToast(msg) {
@@ -541,17 +891,22 @@
 
   function handleNewsletter() {
     const input = document.querySelector('.nl-input');
-    if (input.value.includes('@')) { showToast('Subscribed! Welcome to Zelfbaker 🎉'); input.value = ''; }
+    if (input.value.includes('@')) {
+      showToast('Subscribed! Welcome to Self Bakery 🎉');
+      input.value = '';
+    }
   }
 
+  // ── SCROLL ANIMATIONS ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
 
   renderProducts();
   updateCartUI();
-  setTimeout(() => { document.querySelectorAll('.fade-in').forEach(el => observer.observe(el)); }, 100);
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  }, 80);
 </script>
 </body>
 </html>

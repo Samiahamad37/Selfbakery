@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self Bakery — Business Pitch · Dar es Salaam</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#FAF3E0; --brown:#2B1600; --amber:#E8920A;
+      --amber-lt:#F9C85A; --mid:#7C3A00; --text:#5A3010;
+      --green:#2D6A4F; --green-lt:#74C69D; --rust:#C1440E;
+      --border:rgba(43,22,0,0.10);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--brown);}
+
+    /* COVER */
+    .cover{
+      background:var(--brown); min-height:100vh;
+      display:flex;flex-direction:column;justify-content:center;
+      padding:80px 10%; position:relative;overflow:hidden;
+    }
+    /* TZ flag stripe */
+    .cover::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:6px;
+      background:linear-gradient(90deg,var(--green) 33%,#FFD700 33% 66%,var(--rust) 66%);
+    }
+    .cover::after{
+      content:'🍞';position:absolute;right:-40px;bottom:-60px;
+      font-size:300px;opacity:.05;pointer-events:none;
+    }
+    .cover-tag{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(232,146,10,.4);border-radius:100px;
+      padding:6px 18px;font-size:12px;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--amber-lt);
+      margin-bottom:30px;width:fit-content;
+    }
+    .cover h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(46px,6vw,80px);font-weight:700;
+      color:#fff;line-height:1.06;margin-bottom:18px;
+    }
+    .cover h1 span{color:var(--amber);font-style:italic;}
+    .cover-sub{font-size:17px;color:rgba(255,255,255,.58);max-width:540px;line-height:1.72;margin-bottom:44px;}
+    .cover-meta{display:flex;gap:36px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+    .meta-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-lt);opacity:.65;margin-bottom:3px;}
+    .meta-val{font-size:14px;color:rgba(255,255,255,.82);}
+
+    /* SECTIONS */
+    section{padding:76px 10%;}
+    section:nth-child(even){background:var(--cream);}
+    .sec-tag{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:9px;}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--brown);margin-bottom:18px;line-height:1.15;}
+    .lead{font-size:16px;line-height:1.78;color:var(--text);max-width:680px;margin-bottom:30px;}
+    p{font-size:14.5px;line-height:1.78;color:var(--text);margin-bottom:14px;}
+
+    /* TWO-COL */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px;}
+    .box{border-radius:16px;padding:34px;border:1px solid var(--border);}
+    .box.dark{background:var(--brown);color:#fff;}
+    .box.light{background:#fff;}
+    .box-icon{font-size:38px;margin-bottom:14px;}
+    .box h3{font-family:'Playfair Display',serif;font-size:21px;margin-bottom:10px;}
+    .box.dark h3{color:var(--amber-lt);}
+    .box p{font-size:13.5px;line-height:1.75;}
+    .box.dark p{color:rgba(255,255,255,.62);}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:38px 0;}
+    .stat-card{background:#fff;border-radius:14px;padding:26px 22px;border:1px solid var(--border);text-align:center;box-shadow:0 4px 18px rgba(43,22,0,.06);}
+    .stat-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--amber);}
+    .stat-label{font-size:12.5px;color:var(--text);margin-top:4px;line-height:1.42;}
+
+    /* FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px;}
+    .feat{display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:12px;padding:20px 22px;border:1px solid var(--border);}
+    .feat-icon{width:42px;height:42px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:21px;}
+    .feat-icon.a{background:rgba(232,146,10,.12);}
+    .feat-icon.b{background:rgba(45,106,79,.12);}
+    .feat-icon.c{background:rgba(193,68,14,.10);}
+    .feat h4{font-size:14.5px;font-weight:600;color:var(--brown);margin-bottom:4px;}
+    .feat p{font-size:12.5px;margin:0;}
+
+    /* IMPACT ITEMS */
+    .impact-list{display:flex;flex-direction:column;gap:16px;margin-top:10px;}
+    .impact-item{display:flex;gap:18px;align-items:flex-start;background:#fff;border-radius:13px;padding:24px;border:1px solid var(--border);}
+    .impact-item-icon{font-size:30px;flex-shrink:0;margin-top:2px;}
+    .impact-item h4{font-size:15px;font-weight:600;color:var(--brown);margin-bottom:5px;}
+    .impact-item p{font-size:13.5px;margin:0;}
+
+    /* ROADMAP */
+    .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+    .step{border-radius:14px;padding:26px 22px;position:relative;overflow:hidden;}
+    .step-1{background:var(--brown);}
+    .step-2{background:var(--green);}
+    .step-3{background:var(--amber);}
+    .step-num{font-family:'Playfair Display',serif;font-size:60px;font-weight:700;color:rgba(255,255,255,.1);position:absolute;top:8px;right:14px;line-height:1;}
+    .step-phase{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;}
+    .step h3{font-family:'Playfair Display',serif;font-size:19px;color:#fff;margin-bottom:10px;}
+    .step ul{list-style:none;}
+    .step ul li{font-size:12.5px;color:rgba(255,255,255,.72);padding:3px 0;}
+    .step ul li::before{content:'→  ';}
+    .step-1 ul li::before,.step-3 ul li::before{color:rgba(255,255,255,.45);}
+
+    /* DELIVERABLES */
+    .deliverables{display:flex;flex-direction:column;gap:14px;margin-top:28px;}
+    .del-item{display:flex;align-items:center;gap:18px;background:#fff;border-radius:12px;padding:18px 22px;border:1px solid var(--border);box-shadow:0 2px 10px rgba(43,22,0,.05);}
+    .del-badge{width:46px;height:46px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .del-badge.a{background:rgba(232,146,10,.12);}
+    .del-badge.b{background:rgba(45,106,79,.12);}
+    .del-badge.c{background:rgba(193,68,14,.10);}
+    .del-title{font-size:14.5px;font-weight:600;color:var(--brown);margin-bottom:2px;}
+    .del-desc{font-size:12.5px;color:var(--text);}
+    .del-link{margin-left:auto;padding:8px 16px;border-radius:6px;background:var(--brown);color:#fff;font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;transition:background .2s;}
+    .del-link:hover{background:var(--amber);}
+
+    /* QUOTE */
+    .quote{background:var(--amber);border-radius:16px;padding:36px 44px;margin:36px 0;position:relative;}
+    .quote::before{content:'"';font-family:'Playfair Display',serif;font-size:110px;color:rgba(43,22,0,.12);position:absolute;top:-10px;left:18px;line-height:1;}
+    .quote p{font-family:'Playfair Display',serif;font-size:21px;color:var(--brown);font-style:italic;line-height:1.55;position:relative;margin:0;}
+
+    /* CTA */
+    .cta-section{background:linear-gradient(135deg,var(--brown),var(--mid));text-align:center;padding:84px 10%;position:relative;overflow:hidden;}
+    .cta-section::before{content:'🍩';position:absolute;left:-40px;bottom:-40px;font-size:220px;opacity:.05;}
+    .cta-section::after{content:'🎂';position:absolute;right:-40px;top:-40px;font-size:220px;opacity:.05;}
+    .cta-section h2{color:#fff;margin-bottom:14px;}
+    .cta-section p{color:rgba(255,255,255,.58);max-width:480px;margin:0 auto 32px;}
+    .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn-w{padding:13px 28px;border-radius:7px;font-size:14.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s;}
+    .btn-w.fill{background:var(--amber);color:#fff;border:2px solid var(--amber);}
+    .btn-w.fill:hover{background:var(--amber-lt);color:var(--brown);}
+    .btn-w.out{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.28);}
+    .btn-w.out:hover{border-color:#fff;}
+
+    @media(max-width:768px){
+      .two-col,.stats-row,.features-grid,.roadmap{grid-template-columns:1fr;}
+      .del-item{flex-wrap:wrap;}
+      .del-link{margin-left:0;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">🇹🇿 Business Pitch · Self Bakery · Dar es Salaam</div>
+  <h1>Sell Your Bakes<br><span>Online. In Tanzania.</span></h1>
+  <p class="cover-sub">A complete e-commerce website built for Self Bakery — designed to reach more customers across Dar es Salaam, accept M-Pesa payments, and grow a real sustainable online business.</p>
+  <div class="cover-meta">
+    <div><div class="meta-label">Brand</div><div class="meta-val">Self Bakery</div></div>
+    <div><div class="meta-label">Location</div><div class="meta-val">Dar es Salaam, Tanzania</div></div>
+    <div><div class="meta-label">Currency</div><div class="meta-val">Tanzanian Shilling (TSh)</div></div>
+    <div><div class="meta-label">Payment</div><div class="meta-val">M-Pesa · Bank · Cash on Delivery</div></div>
+    <div><div class="meta-label">Status</div><div class="meta-val">Ready to Launch Today</div></div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<section>
+  <div class="sec-tag">The Problem</div>
+  <h2>Great Baking Hidden Behind<br>WhatsApp & Word of Mouth</h2>
+  <p class="lead">Most talented home bakers in Tanzania rely entirely on Instagram DMs and personal referrals. That's not a business — it's a hobby with a ceiling. Every quiet week costs money.</p>
+  <div class="two-col">
+    <div class="box dark">
+      <div class="box-icon">😓</div>
+      <h3>Without a Website</h3>
+      <p>Orders come through WhatsApp at odd hours, Instagram comments get missed, payments are awkward to collect, and there's no way to plan production because demand is unpredictable. Growth is impossible to manage.</p>
+    </div>
+    <div class="box light">
+      <div class="box-icon">🚀</div>
+      <h3>With Self Bakery's Webshop</h3>
+      <p style="color:var(--text)">Customers browse the menu, add to cart, and pay via M-Pesa — all in one place. Orders are clear, payment is handled, and the baker knows exactly what to prepare each morning. Business becomes manageable and scalable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section>
+  <div class="sec-tag">The Tanzania Market</div>
+  <h2>The Opportunity Is Huge<br>and Still Wide Open</h2>
+  <p class="lead">Tanzania's digital economy is growing rapidly. Smartphone penetration, M-Pesa adoption, and demand for quality local food are all creating the perfect moment for an online artisan bakery.</p>
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-num">33M+</div>
+      <div class="stat-label">Mobile money users in Tanzania — making M-Pesa the natural payment for online food</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4M+</div>
+      <div class="stat-label">People in Dar es Salaam — Africa's fastest-growing city and your core market</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">42%</div>
+      <div class="stat-label">Year-on-year growth in Tanzania's e-commerce sector — the window is open now</div>
+    </div>
+  </div>
+  <div class="quote">
+    <p>"Dar es Salaam's middle class is growing fast and actively looking for quality local food brands they can trust and order conveniently. Self Bakery is perfectly positioned to be that brand."</p>
+  </div>
+</section>
+
+<!-- WHAT WE BUILT -->
+<section>
+  <div class="sec-tag">The Solution</div>
+  <h2>A Webshop Built for<br>Tanzania's Realities</h2>
+  <p class="lead">Not a generic Western e-commerce template. Every decision — from M-Pesa integration to TSh pricing, from Dar es Salaam delivery zones to local product names — was made for this specific market.</p>
+
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-icon a">📱</div>
+      <div><h4>M-Pesa Payment Integration</h4><p>The #1 way Tanzanians pay for everything. Payment details are shown directly in the cart sidebar — no friction, no barriers.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon b">🇹🇿</div>
+      <div><h4>Tanzanian Shilling (TSh) Pricing</h4><p>All prices in TSh. Free delivery threshold set at TSh 25,000. Delivery fee of TSh 3,000 — real DSM numbers, not guesses.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon a">🍩</div>
+      <div><h4>Local Products — Mandazi, Chapati, Vitumbua</h4><p>Products reflect what Tanzanian customers actually want. Mandazi, chapati, vitumbua, banana cake — alongside artisan breads and cakes.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon b">🚚</div>
+      <div><h4>Dar es Salaam Delivery Zones</h4><p>Neighbourhood-specific delivery references: Mikocheni, Kariakoo, Kinondoni, Sinza. Customers feel seen, not served a generic template.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon c">🛒</div>
+      <div><h4>Live Cart with Upsell Logic</h4><p>The cart tracks your TSh 25,000 free delivery threshold in real time — nudging customers to add one more item, increasing every order's value.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon a">💬</div>
+      <div><h4>WhatsApp & Social Ready</h4><p>Footer links to WhatsApp, Instagram, Facebook, and TikTok — the channels where Tanzanian customers already are.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon b">📱</div>
+      <div><h4>Mobile-First Design</h4><p>Over 80% of Tanzanians browse on mobile. The site is fully responsive — fast, clean and easy to use on any smartphone.</p></div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon c">⭐</div>
+      <div><h4>Local Social Proof</h4><p>Testimonials from real DSM neighbourhoods — Mikocheni, Kariakoo, Sinza — with Swahili phrases included to build instant local trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS IMPACT -->
+<section>
+  <div class="sec-tag">Business Impact</div>
+  <h2>How This Website Grows<br>Self Bakery</h2>
+  <p class="lead">Every feature was chosen with one outcome in mind: turning Self Bakery's talent into consistent, growing income in Dar es Salaam.</p>
+
+  <div class="impact-list">
+    <div class="impact-item">
+      <div class="impact-item-icon">📍</div>
+      <div>
+        <h4>Reaches Every Dar es Salaam Neighbourhood</h4>
+        <p>A bakery in Kinondoni doesn't have to rely on foot traffic from Kinondoni alone. Anyone in DSM can browse the menu at midnight, place an order, pay via M-Pesa, and get fresh bread in the morning. The whole city becomes your market.</p>
+      </div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-item-icon">💬</div>
+      <div>
+        <h4>Ends the WhatsApp Order Chaos</h4>
+        <p>Managing orders across Instagram DMs, WhatsApp messages, and phone calls is exhausting and error-prone. A webshop centralises every order with clear item names, quantities, and addresses — so you bake exactly what you need, nothing more.</p>
+      </div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-item-icon">📱</div>
+      <div>
+        <h4>M-Pesa Makes Payment Instant and Secure</h4>
+        <p>No more chasing cash payments, dealing with bounced mobile transfers, or awkward "I'll pay on delivery" situations. M-Pesa payment details are shown directly in the cart — customers pay before you bake, so cash flow improves immediately.</p>
+      </div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-item-icon">📈</div>
+      <div>
+        <h4>The TSh 25,000 Threshold Increases Every Order</h4>
+        <p>When a customer is at TSh 18,000, the cart tells them they're TSh 7,000 away from free delivery. Almost every time, they add a mandazi pack or a banana cake slice. This single mechanic can increase your average order value by 20–30%.</p>
+      </div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-item-icon">🏆</div>
+      <div>
+        <h4>Premium Design Justifies Premium Pricing</h4>
+        <p>A professional, beautiful website signals quality. Customers who see a well-designed menu with real photos, proper descriptions, and glowing reviews are far less likely to ask "can you do it cheaper?" The brand commands better prices from day one.</p>
+      </div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-item-icon">🎂</div>
+      <div>
+        <h4>Unlocks Corporate & Event Orders</h4>
+        <p>Wedding cakes, office catering, graduation parties — these are high-value orders that currently go to whoever has the most visible online presence. A professional website puts Self Bakery in the running for contracts worth TSh 500,000+ per order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section>
+  <div class="sec-tag">Growth Roadmap</div>
+  <h2>Launch to Scale in 6 Months</h2>
+  <p class="lead">The website is the foundation. Here's the path from launch day to a fully established Dar es Salaam food brand.</p>
+  <div class="roadmap">
+    <div class="step step-1">
+      <div class="step-num">01</div>
+      <div class="step-phase">Now · Phase 1</div>
+      <h3>Launch</h3>
+      <ul>
+        <li>Go live with webshop</li>
+        <li>Instagram bio link updated</li>
+        <li>M-Pesa ordering live</li>
+        <li>First DSM deliveries</li>
+        <li>WhatsApp broadcast to existing customers</li>
+      </ul>
+    </div>
+    <div class="step step-2">
+      <div class="step-num">02</div>
+      <div class="step-phase">Month 2–3 · Phase 2</div>
+      <h3>Grow</h3>
+      <ul>
+        <li>Facebook & Instagram ads (DSM targeted)</li>
+        <li>Weekly newsletter deals</li>
+        <li>Subscription bread boxes</li>
+        <li>Office & corporate catering menu</li>
+        <li>TikTok baking content</li>
+      </ul>
+    </div>
+    <div class="step step-3">
+      <div class="step-num">03</div>
+      <div class="step-phase">Month 4–6 · Phase 3</div>
+      <h3>Scale</h3>
+      <ul>
+        <li>Multiple delivery zones with riders</li>
+        <li>Wedding & events catering page</li>
+        <li>Wholesale to offices & hotels</li>
+        <li>Seasonal special drops</li>
+        <li>Loyalty reward programme</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section>
+  <div class="sec-tag">What's Included</div>
+  <h2>Your Three Deliverables</h2>
+  <p class="lead">Everything needed to understand, deploy and start growing Self Bakery online — today.</p>
+  <div class="deliverables">
+    <div class="del-item">
+      <div class="del-badge a">🌐</div>
+      <div>
+        <div class="del-title">Live Website Demo</div>
+        <div class="del-desc">Full webshop in English — TSh pricing, M-Pesa cart, local products, DSM delivery. Open the file in any browser and see it working live.</div>
+      </div>
+      <a class="del-link" href="selfbakery-website.html" target="_blank">Open Demo →</a>
+    </div>
+    <div class="del-item">
+      <div class="del-badge b">📦</div>
+      <div>
+        <div class="del-title">GitHub-Ready Repository</div>
+        <div class="del-desc">ZIP with index.html + README. Deploy to GitHub Pages free, or drag-and-drop to Netlify for a live URL in under 5 minutes.</div>
+      </div>
+      <a class="del-link" href="selfbakery-repo.zip" download>Download Repo →</a>
+    </div>
+    <div class="del-item">
+      <div class="del-badge c">📄</div>
+      <div>
+        <div class="del-title">This Pitch Document</div>
+        <div class="del-desc">Full business case — market opportunity, feature breakdown, business impact, and 6-month growth roadmap tailored to Dar es Salaam.</div>
+      </div>
+      <a class="del-link" href="selfbakery-pitch.html">Share Pitch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2 style="font-family:'Playfair Display',serif">Dar es Salaam Is Hungry.<br>Let's Feed Them.</h2>
+  <p>Your customers are already searching for quality baked goods in DSM. Make sure Self Bakery is what they find.</p>
+  <div class="cta-btns">
+    <a class="btn-w fill" href="selfbakery-website.html" target="_blank">🌐 View Live Demo</a>
+    <a class="btn-w out" href="selfbakery-repo.zip" download>📦 Download Code</a>
+  </div>
+  <p style="margin-top:36px;font-size:12.5px;opacity:.36">Self Bakery · Kinondoni, Dar es Salaam, Tanzania · hello@selfbakery.co.tz · +255 712 345 678</p>
+</div>
+
+</body>
+</html>
